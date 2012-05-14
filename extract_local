@@ -1,0 +1,41 @@
+#!/bin/bash
+
+intgitdirs="config description hooks info logs objects packed-refs refs rr-cache svn"
+clonedirs="bootable/recovery device/acer/picasso external/busybox system/core"
+
+echo "checkout special versions of:"
+for dir in $clonedirs
+do
+    echo "> $dir"
+done
+
+echo ""
+echo "Remove any pre-existing work directories"
+for dir in $clonedirs
+do
+    rm -rf $dir
+done
+
+echo "clone from .repo/projects/android.git"
+
+for dir in $clonedirs
+do
+    mkdir -p $dir/.git
+    parpath=`echo $dir/.git | sed s/[^\/]*/../g`/.repo/projects/android.git
+    for intdir in $intgitdirs
+    do
+        ln -s $parpath/$intdir "$dir/.git/$intdir"
+    done
+done
+
+#now we need to add in the proper heads
+git --git-dir=.repo/projects/android.git show github/APR_recovery | head -n 1 | sed s/commit\ //g > bootable/recovery/.git/HEAD
+git --git-dir=.repo/projects/android.git show github/picasso_device | head -n 1 | sed s/commit\ //g > device/acer/picasso/.git/HEAD
+git --git-dir=.repo/projects/android.git show github/external_busybox | head -n 1 | sed s/commit\ //g > external/busybox/.git/HEAD
+git --git-dir=.repo/projects/android.git show github/system_core | head -n 1 | sed s/commit\ //g > system/core/.git/HEAD
+
+echo "Checkout work directories"
+for dir in $clonedirs
+do
+    ( cd $dir ; git checkout -f)
+done
