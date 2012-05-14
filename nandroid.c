@@ -287,7 +287,7 @@ int nandroid_backup(const char* backup_path)
     }
 
     if (0 != ensure_path_mounted("/flexrom")){
-        ui_print("Flexrom not mounted, skipping (not in this rom?)");
+        ui_print("Flexrom not mounted, skipping (not in this rom?)\n");
     }
     else if (0 != (ret = nandroid_backup_partition(backup_path, "/flexrom")))
     {
@@ -320,8 +320,11 @@ int nandroid_backup(const char* backup_path)
             return ret;
     }
 
-    ui_print("Dumping System Restore Data (mmcblock0 + UID)");
+    ui_print("Dumping System Restore Data (mmcblock0 + UID)\n");
     sprintf(tmp, "nandroid-sysrestore-back.sh %s", backup_path);
+    if (0 != (ret = __system(tmp))) {
+        ui_print("Error extracting the UID or mmc block0 data\n");
+    }
 
     ui_print("Generating md5 sum...\n");
     sprintf(tmp, "nandroid-md5.sh %s", backup_path);

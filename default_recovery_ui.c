@@ -28,6 +28,7 @@ char* MENU_ITEMS[] = { "reboot system now",
                        "wipe cache partition",
                        "backup and restore",
                        "mounts and storage",
+                       "cleanup tab",
                        "advanced",
                        NULL };
 
@@ -43,6 +44,13 @@ int device_reboot_now(volatile char* key_pressed, int key_code) {
 }
 
 int device_perform_action(int which) {
+    if(which == 6){
+        system_verification_and_cleanup();
+        return NO_ACTION; /*nop*/
+    }
+    if(which == 7){
+        return ITEM_ADVANCED;  /*advanced*/
+    }
     return which;
 }
 

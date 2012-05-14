@@ -45,6 +45,8 @@ int format_unknown_device(const char *device, const char* path, const char *fs_t
 void
 wipe_battery_stats();
 
+void system_verification_and_cleanup();
+
 void create_fstab();
 
 int has_datadata();

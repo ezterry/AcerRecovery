@@ -1023,6 +1023,7 @@ void show_advanced_menu()
             {
                 ensure_path_mounted("/system");
                 ensure_path_mounted("/data");
+                ensure_path_mounted("/flexrom");
                 ui_print("Fixing permissions...\n");
                 __system("fix_permissions");
                 ui_print("Done!\n");
@@ -1072,6 +1073,34 @@ void show_advanced_menu()
                 break;
             }
         }
+    }
+}
+
+void system_verification_and_cleanup(void)
+{
+    if (0 != ensure_path_mounted("/data")){
+        ui_print("Data can't be mounted\n");
+        ui_print("This likely means you have not booted your tab since formatting\n");
+        return;
+    }
+    LOGW("User requested to clean the tab\n");
+    if (confirm_selection( "Clean TAB? (wipe cache, dalvik, and fix_permissions)", "Yes - Clean my tab")){
+        LOGW("Starting tab cleaning\n");
+
+        ui_set_background(BACKGROUND_ICON_INSTALLING);
+        ui_print("Wipe /cache...");
+        format_volume("/cache");
+
+        ui_print("Wipe dalvik cache...\n");
+        ensure_path_mounted("/sd-ext");
+        ensure_path_mounted("/flexrom");
+        ensure_path_mounted("/system");
+        __system("rm -r /data/dalvik-cache");
+        __system("rm -r /sd-ext/dalvik-cache");
+
+        ui_print("Fix Permissions...\n");
+        __system("fix_permissions");
+        ui_print("Cleanup Done :) \n");
     }
 }
 
