@@ -14,10 +14,10 @@ plus a few modified projects
 
 The modified projects are as follows:
 
-> bootable/recovery @@ https://github.com/ezterry/AcerRecovery/tree/APR_recovery
-> device/acer/picasso @@ https://github.com/ezterry/AcerRecovery/tree/picasso_device 
-> external/busybox @@ https://github.com/ezterry/AcerRecovery/tree/external_busybox
-> system/core @@ https://github.com/ezterry/AcerRecovery/tree/system_core
+- bootable/recovery @@ https://github.com/ezterry/AcerRecovery/tree/APR_recovery
+- device/acer/picasso @@ https://github.com/ezterry/AcerRecovery/tree/picasso_device 
+- external/busybox @@ https://github.com/ezterry/AcerRecovery/tree/external_busybox
+- system/core @@ https://github.com/ezterry/AcerRecovery/tree/system_core
 
 (It ought to be noted most modifications are in the device tree and the CWM bootable/recovery tree)
 
@@ -32,22 +32,21 @@ distros have been successfully used.
 
 The following is from the CMWiki build requirements: 
 
-    Install using the package manager of your choice:
-    
-    For 32-bit & 64-bit systems:
-    
-    git-core gnupg flex bison gperf libsdl1.2-dev libesd0-dev libwxgtk2.6-dev squashfs-tools build-essential zip curl libncurses5-dev zlib1g-dev sun-java6-jdk pngcrush schedtool 
-    
-For 64-bit only systems:
-    
-    g++-multilib lib32z1-dev lib32ncurses5-dev lib32readline5-dev gcc-4.3-multilib g++-4.3-multilib
-    
-        NOTE: gcc-4.3-multilib g++-4.3-multilib is no longer available for Ubuntu 11.04 64-bit, but should still build without issue. 
-    
-    NOTE: On Ubuntu 10.10, and variants, you need to enable the parter repository to install sun-java6-jdk:
-    
-        add-apt-repository "deb http://archive.canonical.com/ maverick partner" 
-
+>    Install using the package manager of your choice:
+>    
+>    For 32-bit & 64-bit systems:
+>    
+>    git-core gnupg flex bison gperf libsdl1.2-dev libesd0-dev libwxgtk2.6-dev squashfs-tools build-essential zip curl libncurses5-dev zlib1g-dev sun-java6-jdk pngcrush schedtool 
+>    
+>    For 64-bit only systems:
+>    
+>    g++-multilib lib32z1-dev lib32ncurses5-dev lib32readline5-dev gcc-4.3-multilib g++-4.3-multilib
+>    
+>        NOTE: gcc-4.3-multilib g++-4.3-multilib is no longer available for Ubuntu 11.04 64-bit, but should still build without issue. 
+>    
+>    NOTE: On Ubuntu 10.10, and variants, you need to enable the parter repository to install sun-java6-jdk:
+>    
+>        add-apt-repository "deb http://archive.canonical.com/ maverick partner" 
 ** Original text from http://wiki.cyanogenmod.com/wiki/Nexus_One:_Compile_CyanogenMod_%28Linux%29 
 
 Initial Fetch of the Source Code
@@ -94,3 +93,12 @@ To make a new branch "mytesting" in say bootable/recovery do the following
 then you can use normal git commands in this new branch or publish a mirror online
 
 All modifications of the code base will be benefited by using the git revision control system
+
+Thanks and Credits
+------------------
+
+- Koush      - for clockwork mod recovery (he did the hard work)
+- Vash       - various insight into the device
+- Skrilax_CZ - for the unlocked bootloader
+- many others on XDA for insight into the kernel modifcations required
+
