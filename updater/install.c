@@ -47,7 +47,6 @@
 
 // mount(fs_type, partition_type, location, mount_point)
 //
-//    fs_type="yaffs2" partition_type="MTD"     location=partition
 //    fs_type="ext4"   partition_type="EMMC"    location=device
 Value* MountFn(const char* name, State* state, int argc, Expr* argv[]) {
     char* result = NULL;
@@ -83,24 +82,7 @@ Value* MountFn(const char* name, State* state, int argc, Expr* argv[]) {
 
     mkdir(mount_point, 0755);
 
-    if (strcmp(partition_type, "MTD") == 0) {
-        mtd_scan_partitions();
-        const MtdPartition* mtd;
-        mtd = mtd_find_partition_by_name(location);
-        if (mtd == NULL) {
-            fprintf(stderr, "%s: no mtd partition named \"%s\"",
-                    name, location);
-            result = strdup("");
-            goto done;
-        }
-        if (mtd_mount_partition(mtd, mount_point, fs_type, 0 /* rw */) != 0) {
-            fprintf(stderr, "mtd mount of %s failed: %s\n",
-                    location, strerror(errno));
-            result = strdup("");
-            goto done;
-        }
-        result = mount_point;
-    } else {
+    {
         if (mount(location, mount_point, fs_type,
                   MS_NOATIME | MS_NODEV | MS_NODIRATIME, "") < 0) {
             fprintf(stderr, "%s: failed to mount %s at %s: %s\n",
@@ -181,7 +163,6 @@ done:
 
 // format(fs_type, partition_type, location, fs_size)
 //
-//    fs_type="yaffs2" partition_type="MTD"     location=partition fs_size=<bytes>
 //    fs_type="ext4"   partition_type="EMMC"    location=device    fs_size=<bytes>
 //    if fs_size == 0, then make_ext4fs uses the entire partition.
 //    if fs_size > 0, that is the size to use
@@ -213,35 +194,8 @@ Value* FormatFn(const char* name, State* state, int argc, Expr* argv[]) {
         goto done;
     }
 
-    if (strcmp(partition_type, "MTD") == 0) {
-        mtd_scan_partitions();
-        const MtdPartition* mtd = mtd_find_partition_by_name(location);
-        if (mtd == NULL) {
-            fprintf(stderr, "%s: no mtd partition named \"%s\"",
-                    name, location);
-            result = strdup("");
-            goto done;
-        }
-        MtdWriteContext* ctx = mtd_write_partition(mtd);
-        if (ctx == NULL) {
-            fprintf(stderr, "%s: can't write \"%s\"", name, location);
-            result = strdup("");
-            goto done;
-        }
-        if (mtd_erase_blocks(ctx, -1) == -1) {
-            mtd_write_close(ctx);
-            fprintf(stderr, "%s: failed to erase \"%s\"", name, location);
-            result = strdup("");
-            goto done;
-        }
-        if (mtd_write_close(ctx) != 0) {
-            fprintf(stderr, "%s: failed to close \"%s\"", name, location);
-            result = strdup("");
-            goto done;
-        }
-        result = location;
 #ifdef USE_EXT4
-    } else if (strcmp(fs_type, "ext4") == 0) {
+    if (strcmp(fs_type, "ext4") == 0) {
         int status = make_ext4fs(location, atoll(fs_size));
         if (status != 0) {
             fprintf(stderr, "%s: make_ext4fs failed (%d) on %s",
@@ -250,8 +204,10 @@ Value* FormatFn(const char* name, State* state, int argc, Expr* argv[]) {
             goto done;
         }
         result = location;
-#endif
     } else if (strcmp(fs_type, "ext2") == 0) {
+#else
+    } if (strcmp(fs_type, "ext2") == 0) {
+#endif
         int status = format_ext2_device(location);
         if (status != 0) {
             fprintf(stderr, "%s: format_ext2_device failed (%d) on %s",

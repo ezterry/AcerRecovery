@@ -23,8 +23,6 @@ int device_flash_type()
             the_flash_type = BML;
         } else if (access("/proc/emmc", F_OK) == 0) {
             the_flash_type = MMC;
-        } else if (access("/proc/mtd", F_OK) == 0) {
-            the_flash_type = MTD;
         } else {
             the_flash_type = UNSUPPORTED;
         }
@@ -34,14 +32,12 @@ int device_flash_type()
 
 char* get_default_filesystem()
 {
-    return device_flash_type() == MMC ? "ext3" : "yaffs2";
+    return "ext3";
 }
 
 int get_flash_type(const char* partitionType) {
     int type = UNSUPPORTED;
-    if (strcmp(partitionType, "mtd") == 0)
-        type = MTD;
-    else if (strcmp(partitionType, "emmc") == 0)
+    if (strcmp(partitionType, "emmc") == 0)
         type = MMC;
     else if (strcmp(partitionType, "bml") == 0)
         type = BML;
@@ -51,9 +47,7 @@ int get_flash_type(const char* partitionType) {
 static int detect_partition(const char *partitionType, const char *partition)
 {
     int type = device_flash_type();
-    if (strstr(partition, "/dev/block/mtd") != NULL)
-        type = MTD;
-    else if (strstr(partition, "/dev/block/mmc") != NULL)
+    if (strstr(partition, "/dev/block/mmc") != NULL)
         type = MMC;
     else if (strstr(partition, "/dev/block/bml") != NULL)
         type = BML;
@@ -68,8 +62,6 @@ int restore_raw_partition(const char* partitionType, const char *partition, cons
 {
     int type = detect_partition(partitionType, partition);
     switch (type) {
-        case MTD:
-            return cmd_mtd_restore_raw_partition(partition, filename);
         case MMC:
             return cmd_mmc_restore_raw_partition(partition, filename);
         case BML:
@@ -83,8 +75,6 @@ int backup_raw_partition(const char* partitionType, const char *partition, const
 {
     int type = detect_partition(partitionType, partition);
     switch (type) {
-        case MTD:
-            return cmd_mtd_backup_raw_partition(partition, filename);
         case MMC:
             return cmd_mmc_backup_raw_partition(partition, filename);
         case BML:
@@ -99,8 +89,6 @@ int erase_raw_partition(const char* partitionType, const char *partition)
 {
     int type = detect_partition(partitionType, partition);
     switch (type) {
-        case MTD:
-            return cmd_mtd_erase_raw_partition(partition);
         case MMC:
             return cmd_mmc_erase_raw_partition(partition);
         case BML:
@@ -114,8 +102,6 @@ int erase_partition(const char *partition, const char *filesystem)
 {
     int type = detect_partition(NULL, partition);
     switch (type) {
-        case MTD:
-            return cmd_mtd_erase_partition(partition, filesystem);
         case MMC:
             return cmd_mmc_erase_partition(partition, filesystem);
         case BML:
@@ -129,8 +115,6 @@ int mount_partition(const char *partition, const char *mount_point, const char *
 {
     int type = detect_partition(NULL, partition);
     switch (type) {
-        case MTD:
-            return cmd_mtd_mount_partition(partition, mount_point, filesystem, read_only);
         case MMC:
             return cmd_mmc_mount_partition(partition, mount_point, filesystem, read_only);
         case BML:
@@ -144,8 +128,6 @@ int get_partition_device(const char *partition, char *device)
 {
     int type = device_flash_type();
     switch (type) {
-        case MTD:
-            return cmd_mtd_get_partition_device(partition, device);
         case MMC:
             return cmd_mmc_get_partition_device(partition, device);
         case BML:

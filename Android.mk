@@ -28,13 +28,17 @@ LOCAL_MODULE := recovery
 LOCAL_FORCE_STATIC_EXECUTABLE := true
 
 ifdef I_AM_KOUSH
-RECOVERY_NAME := ClockworkMod Recovery
+RECOVERY_NAME := APR-ClockworkMod Recovery
 LOCAL_CFLAGS += -DI_AM_KOUSH
 else
-RECOVERY_NAME := CWM-based Recovery
+ifdef I_AM_EZTERRY
+RECOVERY_NAME := A500 Public Recovery v0.1
+else
+RECOVERY_NAME := Custom APR
+endif
 endif
 
-RECOVERY_VERSION := $(RECOVERY_NAME) v5.5.0.4
+RECOVERY_VERSION := $(RECOVERY_NAME) based on CWM v5.5.0.4
 
 LOCAL_CFLAGS += -DRECOVERY_VERSION="$(RECOVERY_VERSION)"
 RECOVERY_API_VERSION := 2
@@ -81,11 +85,7 @@ LOCAL_STATIC_LIBRARIES += libminzip libunz libmincrypt
 
 LOCAL_STATIC_LIBRARIES += libedify libbusybox libmkyaffs2image libunyaffs liberase_image libdump_image libflash_image
 
-LOCAL_STATIC_LIBRARIES += libcrecovery libflashutils libmtdutils libmmcutils libbmlutils 
-
-ifeq ($(BOARD_USES_BML_OVER_MTD),true)
-LOCAL_STATIC_LIBRARIES += libbml_over_mtd
-endif
+LOCAL_STATIC_LIBRARIES += libcrecovery libflashutils libmmcutils libbmlutils 
 
 LOCAL_STATIC_LIBRARIES += libminui libpixelflinger_static libpng libcutils
 LOCAL_STATIC_LIBRARIES += libstdc++ libc
@@ -156,7 +156,6 @@ include $(commands_recovery_local_path)/libcrecovery/Android.mk
 include $(commands_recovery_local_path)/minui/Android.mk
 include $(commands_recovery_local_path)/minelf/Android.mk
 include $(commands_recovery_local_path)/minzip/Android.mk
-include $(commands_recovery_local_path)/mtdutils/Android.mk
 include $(commands_recovery_local_path)/mmcutils/Android.mk
 include $(commands_recovery_local_path)/tools/Android.mk
 include $(commands_recovery_local_path)/edify/Android.mk

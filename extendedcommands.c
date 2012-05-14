@@ -65,9 +65,6 @@ void toggle_script_asserts()
 int install_zip(const char* packagefilepath)
 {
     ui_print("\n-- Installing: %s\n", packagefilepath);
-    if (device_flash_type() == MTD) {
-        set_sdcard_update_bootloader_message();
-    }
     int status = install_package(packagefilepath);
     ui_reset_progress();
     if (status != INSTALL_SUCCESS) {
@@ -485,26 +482,8 @@ int format_device(const char *device, const char *path, const char *fs_type) {
     }
 
     if (strcmp(fs_type, "yaffs2") == 0 || strcmp(fs_type, "mtd") == 0) {
-        mtd_scan_partitions();
-        const MtdPartition* partition = mtd_find_partition_by_name(device);
-        if (partition == NULL) {
-            LOGE("format_volume: no MTD partition \"%s\"\n", device);
-            return -1;
-        }
-
-        MtdWriteContext *write = mtd_write_partition(partition);
-        if (write == NULL) {
-            LOGW("format_volume: can't open MTD \"%s\"\n", device);
-            return -1;
-        } else if (mtd_erase_blocks(write, -1) == (off_t) -1) {
-            LOGW("format_volume: can't erase MTD \"%s\"\n", device);
-            mtd_write_close(write);
-            return -1;
-        } else if (mtd_write_close(write)) {
-            LOGW("format_volume: can't close MTD \"%s\"\n",device);
-            return -1;
-        }
-        return 0;
+        LOGE("yaffs2/mtd not supported by this recovery");
+        return -1;
     }
 
     if (strcmp(fs_type, "ext4") == 0) {

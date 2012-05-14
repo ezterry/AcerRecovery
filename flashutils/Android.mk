@@ -8,7 +8,7 @@ LOCAL_SRC_FILES := flashutils.c
 LOCAL_MODULE := libflashutils
 LOCAL_MODULE_TAGS := optional
 LOCAL_C_INCLUDES += bootable/recovery
-LOCAL_STATIC_LIBRARIES := libmmcutils libmtdutils libbmlutils libcrecovery
+LOCAL_STATIC_LIBRARIES := libmmcutils libbmlutils libcrecovery
 
 BOARD_RECOVERY_DEFINES := BOARD_BML_BOOT BOARD_BML_RECOVERY
 
@@ -24,7 +24,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := flash_image.c
 LOCAL_MODULE := flash_image
 LOCAL_MODULE_TAGS := optional
-LOCAL_STATIC_LIBRARIES := libflashutils libmtdutils libmmcutils libbmlutils
+LOCAL_STATIC_LIBRARIES := libflashutils libmmcutils libbmlutils
 LOCAL_SHARED_LIBRARIES := libcutils libc
 include $(BUILD_EXECUTABLE)
 
@@ -32,7 +32,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := dump_image.c
 LOCAL_MODULE := dump_image
 LOCAL_MODULE_TAGS := optional
-LOCAL_STATIC_LIBRARIES := libflashutils libmtdutils libmmcutils libbmlutils
+LOCAL_STATIC_LIBRARIES := libflashutils libmmcutils libbmlutils
 LOCAL_SHARED_LIBRARIES := libcutils libc
 include $(BUILD_EXECUTABLE)
 
@@ -40,7 +40,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := erase_image.c
 LOCAL_MODULE := erase_image
 LOCAL_MODULE_TAGS := optional
-LOCAL_STATIC_LIBRARIES := libflashutils libmtdutils libmmcutils libbmlutils
+LOCAL_STATIC_LIBRARIES := libflashutils libmmcutils libbmlutils
 LOCAL_SHARED_LIBRARIES := libcutils libc
 include $(BUILD_EXECUTABLE)
 
@@ -75,7 +75,7 @@ LOCAL_MODULE_CLASS := UTILITY_EXECUTABLES
 LOCAL_MODULE_PATH := $(PRODUCT_OUT)/utilities
 LOCAL_UNSTRIPPED_PATH := $(PRODUCT_OUT)/symbols/utilities
 LOCAL_MODULE_STEM := dump_image
-LOCAL_STATIC_LIBRARIES := libflashutils libmtdutils libmmcutils libbmlutils libcutils libc
+LOCAL_STATIC_LIBRARIES := libflashutils  libmmcutils libbmlutils libcutils libc
 LOCAL_FORCE_STATIC_EXECUTABLE := true
 include $(BUILD_EXECUTABLE)
 
@@ -87,7 +87,7 @@ LOCAL_MODULE_CLASS := UTILITY_EXECUTABLES
 LOCAL_MODULE_PATH := $(PRODUCT_OUT)/utilities
 LOCAL_UNSTRIPPED_PATH := $(PRODUCT_OUT)/symbols/utilities
 LOCAL_MODULE_STEM := flash_image
-LOCAL_STATIC_LIBRARIES := libflashutils libmtdutils libmmcutils libbmlutils libcutils libc
+LOCAL_STATIC_LIBRARIES := libflashutils  libmmcutils libbmlutils libcutils libc
 LOCAL_FORCE_STATIC_EXECUTABLE := true
 include $(BUILD_EXECUTABLE)
 
@@ -99,7 +99,7 @@ LOCAL_MODULE_CLASS := UTILITY_EXECUTABLES
 LOCAL_MODULE_PATH := $(PRODUCT_OUT)/utilities
 LOCAL_UNSTRIPPED_PATH := $(PRODUCT_OUT)/symbols/utilities
 LOCAL_MODULE_STEM := erase_image
-LOCAL_STATIC_LIBRARIES := libflashutils libmtdutils libmmcutils libbmlutils libcutils libc
+LOCAL_STATIC_LIBRARIES := libflashutils  libmmcutils libbmlutils libcutils libc
 LOCAL_FORCE_STATIC_EXECUTABLE := true
 include $(BUILD_EXECUTABLE)
 
