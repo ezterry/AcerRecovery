@@ -1,0 +1,96 @@
+A500 Public Recovery
+====================
+
+This document is building instructions to build your own
+copy of the A500 Public Recovery (Based on Clock Work Mod recovery)
+
+This recovery is intended for use with the A500 (and possibly in future other Acer tablets)
+
+Overview of the build environment
+---------------------------------
+
+The build environment for building the A500 Public Recovery is a snapshot of the CM9 source tree
+plus a few modified projects
+
+The modified projects are as follows:
+
+> bootable/recovery @@ https://github.com/ezterry/AcerRecovery/tree/APR_recovery
+> device/acer/picasso @@ https://github.com/ezterry/AcerRecovery/tree/picasso_device 
+> external/busybox @@ https://github.com/ezterry/AcerRecovery/tree/external_busybox
+> system/core @@ https://github.com/ezterry/AcerRecovery/tree/system_core
+
+(It ought to be noted most modifications are in the device tree and the CWM bootable/recovery tree)
+
+To aid in both fetching the CM9 snapshot and grabbing the above packages a combination of repo and
+a support script is used
+
+System Requirements
+-------------------
+
+Android build trees are best supported on Linux, personally I am using Debian squeeze however many other
+distros have been successfully used.
+
+The following is from the CMWiki build requirements: 
+
+    Install using the package manager of your choice:
+    
+    For 32-bit & 64-bit systems:
+    
+    git-core gnupg flex bison gperf libsdl1.2-dev libesd0-dev libwxgtk2.6-dev squashfs-tools build-essential zip curl libncurses5-dev zlib1g-dev sun-java6-jdk pngcrush schedtool 
+    
+For 64-bit only systems:
+    
+    g++-multilib lib32z1-dev lib32ncurses5-dev lib32readline5-dev gcc-4.3-multilib g++-4.3-multilib
+    
+        NOTE: gcc-4.3-multilib g++-4.3-multilib is no longer available for Ubuntu 11.04 64-bit, but should still build without issue. 
+    
+    NOTE: On Ubuntu 10.10, and variants, you need to enable the parter repository to install sun-java6-jdk:
+    
+        add-apt-repository "deb http://archive.canonical.com/ maverick partner" 
+
+** Original text from http://wiki.cyanogenmod.com/wiki/Nexus_One:_Compile_CyanogenMod_%28Linux%29 
+
+Initial Fetch of the Source Code
+--------------------------------
+
+run the following commands from a new empty directory on your computer (example: mkdir ~/acer_recovery cd ~/acer_recovery)
+
+    repo init -u https://github.com/ezterry/AcerRecovery.git -b recovery_manifest 
+    repo sync -j 10
+    ./android/extract_local
+
+Note: you will need aprox 10GB of free space for the full build tree
+
+Building the recovery
+---------------------
+
+once you have fetched the files build from the same directory as you ran repo init from (example: cd ~/acer_recovery)
+
+    . build/envsetup.sh
+    lunch full_picasso-eng
+    make -j4 recoveryimage
+
+you should now find the compiled recovery at out/target/product/picasso/recovery.img
+
+Syncing with github
+-------------------
+
+If you want to fetch my most recent changes run the following:
+
+    repo sync -j 10
+    ./android/extract_local
+
+Changing the code
+-----------------
+
+To change the code it is recommended to start a new branch in the related git repository
+
+To make a new branch "mytesting" in say bootable/recovery do the following
+
+    cd bootable/recovery
+    git branch mytesting
+    git checkout mytesting
+
+then you can use normal git commands in this new branch or publish a mirror online
+
+All modifications of the code base will be benefited by using the git revision control system
