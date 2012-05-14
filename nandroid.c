@@ -293,7 +293,10 @@ int nandroid_backup(const char* backup_path)
     {
         return ret;
     }
-
+    
+    /* attempt to delete android_secure, this will fail if the dir is
+     * empty */
+    __system("rmdir /sdcard/.android_secure");
     if (0 != stat("/sdcard/.android_secure", &s))
     {
         ui_print("No /sdcard/.android_secure found. Skipping backup of applications on external storage.\n");
