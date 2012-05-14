@@ -9,4 +9,4 @@ dd if=/dev/block/mmcblk0 of=mmcblk0_start.img bs=1024 count=6656
 
 #done
 sync
-return 1
+return 0
