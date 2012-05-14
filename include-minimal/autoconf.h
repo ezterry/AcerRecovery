@@ -2,7 +2,7 @@
  * Automatically generated C config: don't edit
  * Busybox version: 1.19.4-cm9
  */
-#define AUTOCONF_TIMESTAMP "2012-02-05 18:41 +0100"
+#define AUTOCONF_TIMESTAMP "2012-05-02 02:59 -0400"
 
 #define CONFIG_HAVE_DOT_CONFIG 1
 #define ENABLE_HAVE_DOT_CONFIG 1
@@ -52,10 +52,10 @@
 #define ENABLE_SHOW_USAGE 1
 #define IF_SHOW_USAGE(...) __VA_ARGS__
 #define IF_NOT_SHOW_USAGE(...)
-#define CONFIG_FEATURE_VERBOSE_USAGE 1
-#define ENABLE_FEATURE_VERBOSE_USAGE 1
-#define IF_FEATURE_VERBOSE_USAGE(...) __VA_ARGS__
-#define IF_NOT_FEATURE_VERBOSE_USAGE(...)
+#undef CONFIG_FEATURE_VERBOSE_USAGE
+#define ENABLE_FEATURE_VERBOSE_USAGE 0
+#define IF_FEATURE_VERBOSE_USAGE(...)
+#define IF_NOT_FEATURE_VERBOSE_USAGE(...) __VA_ARGS__
 #define CONFIG_FEATURE_COMPRESS_USAGE 1
 #define ENABLE_FEATURE_COMPRESS_USAGE 1
 #define IF_FEATURE_COMPRESS_USAGE(...) __VA_ARGS__
@@ -1004,10 +1004,10 @@
 #define ENABLE_UNIQ 1
 #define IF_UNIQ(...) __VA_ARGS__
 #define IF_NOT_UNIQ(...)
-#define CONFIG_USLEEP 1
-#define ENABLE_USLEEP 1
-#define IF_USLEEP(...) __VA_ARGS__
-#define IF_NOT_USLEEP(...)
+#undef CONFIG_USLEEP
+#define ENABLE_USLEEP 0
+#define IF_USLEEP(...)
+#define IF_NOT_USLEEP(...) __VA_ARGS__
 #define CONFIG_UUDECODE 1
 #define ENABLE_UUDECODE 1
 #define IF_UUDECODE(...) __VA_ARGS__
@@ -1648,22 +1648,22 @@
 /*
  * Linux Ext2 FS Progs
  */
-#define CONFIG_CHATTR 1
-#define ENABLE_CHATTR 1
-#define IF_CHATTR(...) __VA_ARGS__
-#define IF_NOT_CHATTR(...)
+#undef CONFIG_CHATTR
+#define ENABLE_CHATTR 0
+#define IF_CHATTR(...)
+#define IF_NOT_CHATTR(...) __VA_ARGS__
 #undef CONFIG_FSCK
 #define ENABLE_FSCK 0
 #define IF_FSCK(...)
 #define IF_NOT_FSCK(...) __VA_ARGS__
-#define CONFIG_LSATTR 1
-#define ENABLE_LSATTR 1
-#define IF_LSATTR(...) __VA_ARGS__
-#define IF_NOT_LSATTR(...)
-#define CONFIG_TUNE2FS 1
-#define ENABLE_TUNE2FS 1
-#define IF_TUNE2FS(...) __VA_ARGS__
-#define IF_NOT_TUNE2FS(...)
+#undef CONFIG_LSATTR
+#define ENABLE_LSATTR 0
+#define IF_LSATTR(...)
+#define IF_NOT_LSATTR(...) __VA_ARGS__
+#undef CONFIG_TUNE2FS
+#define ENABLE_TUNE2FS 0
+#define IF_TUNE2FS(...)
+#define IF_NOT_TUNE2FS(...) __VA_ARGS__
 
 /*
  * Linux Module Utilities
@@ -1868,10 +1868,10 @@
 #define ENABLE_FSCK_MINIX 0
 #define IF_FSCK_MINIX(...)
 #define IF_NOT_FSCK_MINIX(...) __VA_ARGS__
-#define CONFIG_MKFS_EXT2 1
-#define ENABLE_MKFS_EXT2 1
-#define IF_MKFS_EXT2(...) __VA_ARGS__
-#define IF_NOT_MKFS_EXT2(...)
+#undef CONFIG_MKFS_EXT2
+#define ENABLE_MKFS_EXT2 0
+#define IF_MKFS_EXT2(...)
+#define IF_NOT_MKFS_EXT2(...) __VA_ARGS__
 #undef CONFIG_MKFS_MINIX
 #define ENABLE_MKFS_MINIX 0
 #define IF_MKFS_MINIX(...)
@@ -2204,14 +2204,14 @@
 #define ENABLE_FEATURE_LESS_LINENUMS 0
 #define IF_FEATURE_LESS_LINENUMS(...)
 #define IF_NOT_FEATURE_LESS_LINENUMS(...) __VA_ARGS__
-#define CONFIG_NANDWRITE 1
-#define ENABLE_NANDWRITE 1
-#define IF_NANDWRITE(...) __VA_ARGS__
-#define IF_NOT_NANDWRITE(...)
-#define CONFIG_NANDDUMP 1
-#define ENABLE_NANDDUMP 1
-#define IF_NANDDUMP(...) __VA_ARGS__
-#define IF_NOT_NANDDUMP(...)
+#undef CONFIG_NANDWRITE
+#define ENABLE_NANDWRITE 0
+#define IF_NANDWRITE(...)
+#define IF_NOT_NANDWRITE(...) __VA_ARGS__
+#undef CONFIG_NANDDUMP
+#define ENABLE_NANDDUMP 0
+#define IF_NANDDUMP(...)
+#define IF_NOT_NANDDUMP(...) __VA_ARGS__
 #define CONFIG_SETSERIAL 1
 #define ENABLE_SETSERIAL 1
 #define IF_SETSERIAL(...) __VA_ARGS__
@@ -3216,10 +3216,10 @@
 #define ENABLE_FEATURE_PS_UNUSUAL_SYSTEMS 0
 #define IF_FEATURE_PS_UNUSUAL_SYSTEMS(...)
 #define IF_NOT_FEATURE_PS_UNUSUAL_SYSTEMS(...) __VA_ARGS__
-#define CONFIG_RENICE 1
-#define ENABLE_RENICE 1
-#define IF_RENICE(...) __VA_ARGS__
-#define IF_NOT_RENICE(...)
+#undef CONFIG_RENICE
+#define ENABLE_RENICE 0
+#define IF_RENICE(...)
+#define IF_NOT_RENICE(...) __VA_ARGS__
 #define CONFIG_BB_SYSCTL 1
 #define ENABLE_BB_SYSCTL 1
 #define IF_BB_SYSCTL(...) __VA_ARGS__
