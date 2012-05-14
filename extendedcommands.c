@@ -78,16 +78,18 @@ int install_zip(const char* packagefilepath)
 }
 
 char* INSTALL_MENU_ITEMS[] = {  "choose zip from sdcard",
+                                "choose zip from mnt/external_sd",
                                 "apply /sdcard/update.zip",
                                 "toggle signature verification",
                                 "toggle script asserts",
                                 "choose zip from internal sdcard",
                                 NULL };
 #define ITEM_CHOOSE_ZIP       0
-#define ITEM_APPLY_SDCARD     1
-#define ITEM_SIG_CHECK        2
-#define ITEM_ASSERTS          3
-#define ITEM_CHOOSE_ZIP_INT   4
+#define ITEM_CHOOSE_ZIP_EXT   1
+#define ITEM_APPLY_SDCARD     2
+#define ITEM_SIG_CHECK        3
+#define ITEM_ASSERTS          4
+#define ITEM_CHOOSE_ZIP_INT   5
 
 void show_install_update_menu()
 {
@@ -118,6 +120,9 @@ void show_install_update_menu()
             }
             case ITEM_CHOOSE_ZIP:
                 show_choose_zip_menu("/sdcard/");
+                break;
+            case ITEM_CHOOSE_ZIP_EXT:
+                show_choose_zip_menu("/mnt/external_sd/");
                 break;
             case ITEM_CHOOSE_ZIP_INT:
                 show_choose_zip_menu("/emmc/");
@@ -804,9 +809,12 @@ void show_nandroid_menu()
                                 NULL
     };
 
-    static char* list[] = { "backup",
-                            "restore",
-                            "advanced restore",
+    static char* list[] = { "backup (internal) /data/media",
+                            "backup (external) /mnt/external_sd",
+                            "restore (internal)",
+                            "restore (external)",
+                            "advanced restore (internal)",
+                            "advanced restore (external)",
                             "backup to internal sdcard",
                             "restore from internal sdcard",
                             "advanced restore from internal sdcard",
@@ -814,12 +822,13 @@ void show_nandroid_menu()
     };
 
     if (volume_for_path("/emmc") == NULL || volume_for_path("/sdcard") == NULL && is_data_media())
-        list[3] = NULL;
+        list[6] = NULL;
 
     int chosen_item = get_menu_selection(headers, list, 0, 0);
     switch (chosen_item)
     {
         case 0:
+        case 1:
             {
                 char backup_path[PATH_MAX];
                 time_t t = time(NULL);
@@ -828,22 +837,34 @@ void show_nandroid_menu()
                 {
                     struct timeval tp;
                     gettimeofday(&tp, NULL);
-                    sprintf(backup_path, "/sdcard/clockworkmod/backup/%d", tp.tv_sec);
+                    if(chosen_item==1)// external sd
+                        sprintf(backup_path, "/mnt/external_sd/clockworkmod/backup/%d", tp.tv_sec);
+                    else // data/media
+                        sprintf(backup_path, "/sdcard/clockworkmod/backup/%d", tp.tv_sec);
                 }
                 else
                 {
-                    strftime(backup_path, sizeof(backup_path), "/sdcard/clockworkmod/backup/%F.%H.%M.%S", tmp);
+                    if(chosen_item==1)// external sd
+                        strftime(backup_path, sizeof(backup_path), "/mnt/external_sd/clockworkmod/backup/%F.%H.%M.%S", tmp);
+                    else
+                        strftime(backup_path, sizeof(backup_path), "/sdcard/clockworkmod/backup/%F.%H.%M.%S", tmp);
                 }
                 nandroid_backup(backup_path);
             }
             break;
-        case 1:
+        case 2:
             show_nandroid_restore_menu("/sdcard");
             break;
-        case 2:
+        case 3:
+            show_nandroid_restore_menu("/mnt/external_sd");
+            break;
+        case 4:
             show_nandroid_advanced_restore_menu("/sdcard");
             break;
-        case 3:
+        case 5:
+            show_nandroid_advanced_restore_menu("/mnt/external_sd");
+            break;
+        case 6:
             {
                 char backup_path[PATH_MAX];
                 time_t t = time(NULL);
@@ -861,10 +882,10 @@ void show_nandroid_menu()
                 nandroid_backup(backup_path);
             }
             break;
-        case 4:
+        case 7:
             show_nandroid_restore_menu("/emmc");
             break;
-        case 5:
+        case 8:
             show_nandroid_advanced_restore_menu("/emmc");
             break;
     }
@@ -1093,6 +1114,8 @@ void create_fstab()
     write_fstab_root("/system", file);
     write_fstab_root("/sdcard", file);
     write_fstab_root("/sd-ext", file);
+    write_fstab_root("/flexrom",file);
+    write_fstab_root("/mnt/external_sd",file);
     fclose(file);
     LOGI("Completed outputting fstab.\n");
 }
