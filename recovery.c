@@ -235,6 +235,10 @@ set_sdcard_update_bootloader_message() {
 // How much of the temp log we have copied to the copy in cache.
 static long tmplog_offset = 0;
 
+void reset_offset(void){
+    tmplog_offset = 0;
+}
+
 static void
 copy_log_file(const char* destination, int append) {
     FILE *log = fopen_path(destination, append ? "a" : "w");

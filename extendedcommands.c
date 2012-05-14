@@ -1076,6 +1076,8 @@ void show_advanced_menu()
     }
 }
 
+void reset_offset(void);
+
 void system_verification_and_cleanup(void)
 {
     if (0 != ensure_path_mounted("/data")){
@@ -1090,6 +1092,8 @@ void system_verification_and_cleanup(void)
         ui_set_background(BACKGROUND_ICON_INSTALLING);
         ui_print("Wipe /cache...");
         format_volume("/cache");
+        /* Reset cache offset */
+        reset_offset();
 
         ui_print("Wipe dalvik cache...\n");
         ensure_path_mounted("/sd-ext");
