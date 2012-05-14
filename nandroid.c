@@ -286,6 +286,14 @@ int nandroid_backup(const char* backup_path)
             return ret;
     }
 
+    if (0 != ensure_path_mounted("/flexrom")){
+        ui_print("Flexrom not mounted, skipping (not in this rom?)");
+    }
+    else if (0 != (ret = nandroid_backup_partition(backup_path, "/flexrom")))
+    {
+        return ret;
+    }
+
     if (0 != stat("/sdcard/.android_secure", &s))
     {
         ui_print("No /sdcard/.android_secure found. Skipping backup of applications on external storage.\n");
@@ -311,6 +319,9 @@ int nandroid_backup(const char* backup_path)
         else if (0 != (ret = nandroid_backup_partition(backup_path, "/sd-ext")))
             return ret;
     }
+
+    ui_print("Dumping System Restore Data (mmcblock0 + UID)");
+    sprintf(tmp, "nandroid-sysrestore-back.sh %s", backup_path);
 
     ui_print("Generating md5 sum...\n");
     sprintf(tmp, "nandroid-md5.sh %s", backup_path);

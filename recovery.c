@@ -677,6 +677,7 @@ wipe_data(int confirm) {
     device_wipe_data();
     erase_volume("/data");
     erase_volume("/cache");
+    erase_volume("/flexrom");
     if (has_datadata()) {
         erase_volume("/datadata");
     }
