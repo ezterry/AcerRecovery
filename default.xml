@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <remote fetch="https://android.googlesource.com/" name="aosp"/>
-  <remote fetch=".." name="github" review="review.cyanogenmod.com"/>
-  
+  <remote fetch="https://github.com/" name="github"/>
+  <remote fetch="https://github.com/" name="alt1" />
+  <remote fetch="https://github.com/" name="alt2" />
+  <remote fetch="https://github.com/" name="alt3" />
+  <remote fetch="https://github.com/" name="alt4" />
+
   <default remote="github" revision="refs/heads/ics" sync-j="4"/>
   
   <project name="CyanogenMod/android_bionic" path="bionic" revision="888cfb27c39b18c45d061a492eeae995aec27a1c"/>
   <project name="CyanogenMod/android_bootable_bootloader_legacy" path="bootable/bootloader/legacy" revision="d3271024770ddcc2fb87dd22f8280764545ab05a"/>
   <project name="CyanogenMod/android_bootable_diskinstaller" path="bootable/diskinstaller" revision="411bb9df76e5b21affae73f076e5d292197b66be"/>
-  <project name="ezterry/AcerRecovery" path="bootable/recovery" revision="APR_recovery"/>
   <project name="CyanogenMod/android_build" path="build" revision="a5033fa550356ef61c3ff260ebd8385d632d8c10">
     <copyfile dest="Makefile" src="core/root.mk"/>
   </project>
   <project name="CyanogenMod/android_dalvik" path="dalvik" revision="6a9739380c73a0256f2484f2bcd0b8f908a2db52"/>
   <project name="CyanogenMod/android_development" path="development" revision="d838c9809ac2d40675d94602971fb4b614dbf713"/>
-  <project name="ezterry/AcerRecovery" path="device/acer/picasso" revision="picasso_device"/>
+  <project name="ezterry/AcerRecovery" path="android" revision="recovery_manifest"/>
   <project name="CyanogenMod/android_external_apache-http" path="external/apache-http" revision="6c9d8c58d3ed710f87c26820d903bb8aad81754f"/>
   <project name="CyanogenMod/android_external_astl" path="external/astl" revision="d13073fbb2bdb9a1bca751f103725a12de7ceafa"/>
   <project name="CyanogenMod/android_external_bash" path="external/bash" revision="f4b417c62a4f272c4cf9a074d0f7a3a97201f9db"/>
@@ -26,7 +29,6 @@
   <project name="CyanogenMod/android_external_bootmenu" path="external/bootmenu" revision="409a1054dc6d9a89c29258ef737438c346b18482"/>
   <project name="CyanogenMod/android_external_bouncycastle" path="external/bouncycastle" revision="120c7be3b96ad42d92b9db1a75e5e5845bf3a723"/>
   <project name="CyanogenMod/android_external_bsdiff" path="external/bsdiff" revision="81872540236d9bb15cccf963d05b9de48baa5375"/>
-  <project name="ezterry/AcerRecovery" path="external/busybox" revision="external_busybox"/>
   <project name="CyanogenMod/android_external_bzip2" path="external/bzip2" revision="048dacdca43eed1534689ececcf2781c63e1e4ba"/>
   <project name="CyanogenMod/android_external_chromium" path="external/chromium" revision="361bc379144f4e67bca8b263c7a673fa73aafefc"/>
   <project name="CyanogenMod/android_external_dbus" path="external/dbus" revision="537eaff5de9aace3348436166d4cde7adc1e488e"/>
@@ -180,7 +182,6 @@
   <project name="CyanogenMod/android_prebuilt" path="prebuilt" revision="0e104261b6d33f87e9f86ff4249bcc0306ab278b"/>
   <project name="CyanogenMod/android_sdk" path="sdk" revision="03b889f17a70b0669226e385c8940ad830f2b4c0"/>
   <project name="CyanogenMod/android_system_bluetooth" path="system/bluetooth" revision="a36e952d211371bf77883f38ca99a27454d81c91"/>
-  <project name="ezterry/AcerRecovery" path="system/core" revision="system_core"/>
   <project name="CyanogenMod/android_system_extras" path="system/extras" revision="fc81dec4f70b052264ce9739aab3d1c7c7848eb0"/>
   <project name="CyanogenMod/android_system_media" path="system/media" revision="b7ea9c85b2838070681b9bb521adbb1169da4069"/>
   <project name="CyanogenMod/android_system_netd" path="system/netd" revision="664b9c2e1d5aca978dcfec8f05309288d63cc844"/>
