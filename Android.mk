@@ -32,7 +32,7 @@ RECOVERY_NAME := APR-ClockworkMod Recovery
 LOCAL_CFLAGS += -DI_AM_KOUSH
 else
 ifdef I_AM_EZTERRY
-RECOVERY_NAME := A500 Public Recovery v0.1
+RECOVERY_NAME := $(PRODUCT_MODEL) Public Recovery v0.2
 else
 RECOVERY_NAME := Custom APR
 endif
