@@ -1,0 +1,17 @@
+ACER Public Recovery - Version History
+======================================
+
+A log of each version, changes, binaries and source snapshot
+
+v0.1
+----
+
+Notes: Initial build
+
+Commits at time of build:
+
+- 814c9b2b4dd76fc8c8ec450d2f1ce39e86055e02 commit refs/remotes/github/APR_recovery
+- a4e71555bb306c9e336c714981abb2c7ad2027a2 commit refs/remotes/github/external_busybox
+- 51fb916445043a42e6587401b27dd9351fb6878f commit refs/remotes/github/picasso_device
+- 015b5454097eb1a827e97446615f287b54464df3 commit refs/remotes/github/recovery_manifest
+- e8390c8ccf94f758191be60df024b7d20b6522a1 commit refs/remotes/github/system_core
