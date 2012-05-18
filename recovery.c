@@ -681,7 +681,8 @@ wipe_data(int confirm) {
     device_wipe_data();
     erase_volume("/data");
     erase_volume("/cache");
-    erase_volume("/flexrom");
+    /* flexrom is not user data do not touch on factory reset */
+    /* erase_volume("/flexrom"); */
     if (has_datadata()) {
         erase_volume("/datadata");
     }

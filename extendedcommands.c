@@ -1010,7 +1010,7 @@ void show_advanced_menu()
                     continue;
 
                 char sddevice[256];
-                Volume *vol = volume_for_path("/sdcard");
+                Volume *vol = volume_for_path("/mnt/external_sd");
                 strcpy(sddevice, vol->device);
                 // we only want the mmcblk, not the partition
                 sddevice[strlen("/dev/block/mmcblkX")] = NULL;
