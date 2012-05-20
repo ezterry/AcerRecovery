@@ -19,7 +19,9 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x105c0000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x105c0000
 BOARD_FLASH_BLOCK_SIZE := 1024
 
-TARGET_PREBUILT_KERNEL := device/acer/picasso/kernel
+#source kernel information 
+TARGET_KERNEL_SOURCE := kernel/acer/t20-kernel
+TARGET_KERNEL_CONFIG := apr_a500_defconfig
 
 #BOARD_HAS_NO_SELECT_BUTTON := true
 # Use this flag if the board has a ext4 partition larger than 2gb

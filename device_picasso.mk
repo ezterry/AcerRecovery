@@ -7,15 +7,7 @@ $(call inherit-product-if-exists, vendor/acer/picasso/picasso-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/acer/picasso/overlay
 
-LOCAL_PATH := device/acer/picasso
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
 PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel \
     device/acer/picasso/ueventd.picasso.rc:root/ueventd.picasso.rc
 
 $(call inherit-product, build/target/product/full.mk)
