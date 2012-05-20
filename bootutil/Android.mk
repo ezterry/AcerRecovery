@@ -1,0 +1,13 @@
+#recovery boot utilities
+
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+LOCAL_FORCE_STATIC_EXECUTABLE := true
+LOCAL_MODULE := setbootmode
+LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
+LOCAL_SRC_FILES := setbootmode.c
+LOCAL_STATIC_LIBRARIES := libc
+include $(BUILD_EXECUTABLE)
