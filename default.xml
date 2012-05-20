@@ -18,6 +18,7 @@
   <project name="CyanogenMod/android_dalvik" path="dalvik" revision="6a9739380c73a0256f2484f2bcd0b8f908a2db52"/>
   <project name="CyanogenMod/android_development" path="development" revision="d838c9809ac2d40675d94602971fb4b614dbf713"/>
   <project name="ezterry/AcerRecovery" path="android" revision="recovery_manifest"/>
+  <project name="ezterry/AcerTabKernel" path="kernel/acer/t20-kernel" revision="master" />
   <project name="CyanogenMod/android_external_apache-http" path="external/apache-http" revision="6c9d8c58d3ed710f87c26820d903bb8aad81754f"/>
   <project name="CyanogenMod/android_external_astl" path="external/astl" revision="d13073fbb2bdb9a1bca751f103725a12de7ceafa"/>
   <project name="CyanogenMod/android_external_bash" path="external/bash" revision="f4b417c62a4f272c4cf9a074d0f7a3a97201f9db"/>
