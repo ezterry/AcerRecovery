@@ -17,32 +17,32 @@ Commits at time of build:
 - 015b5454097eb1a827e97446615f287b54464df3 commit refs/remotes/github/recovery_manifest
 - e8390c8ccf94f758191be60df024b7d20b6522a1 commit refs/remotes/github/system_core
 
-Kernel: stock ICS kernel, with KPatch applied
-source mirror: https://github.com/ezterry/AcerTabKernel/tree/A500_ICS_4.0.3_OfficialDrop
+Kernel: stock ICS kernel, with KPatch applied <br />
+source mirror: https://github.com/ezterry/AcerTabKernel/tree/A500_ICS_4.0.3_OfficialDrop <br />
 KPatch script: https://gist.github.com/2564016
 
 v0.2
 ----
 
-Bugfixes:
-> wipe full data fix
-> fix on formating the external sdcard
-> cleaned up some warnings
+Bugfixes: <br />
+~ wipe full data fix <br />
+~ fix on formating the external sdcard <br />
+~ cleaned up some warnings <br />
 
-Features:
-> added multiboot support (select boot partition)
-> added itsmagic binary (command line only)
-> switch to kernel source build rather than pre-built kernels
-> added /data/linux support (skip on wipe data, and nandroid backup)
+Features: <br />
+~ added multiboot support (select boot partition) <br />
+~ added itsmagic binary (command line only) <br />
+~ switch to kernel source build rather than pre-built kernels <br />
+~ added /data/linux support (skip on wipe data, and nandroid backup) <br />
 
 Devices: A500
 
-d8205968192d40b0d66799a7912b2a0b2fb2d402 refs/remotes/github/APR_recovery
-75a2fcc287665cecabb573f94068bba8f661d272 refs/remotes/github/external_busybox
-f9332ed4d9054aba42ecd6ffa0c5b14b17b36d81 refs/remotes/github/picasso_device
-41cde01191ea8b1c6a1d5c2499b97d2ca0942c87 refs/remotes/github/recovery_manifest
-d089b2e4556e5c21577616f8cef60a4cb4e46f4d refs/remotes/github/system_core
+- d8205968192d40b0d66799a7912b2a0b2fb2d402 refs/remotes/github/APR_recovery
+- 75a2fcc287665cecabb573f94068bba8f661d272 refs/remotes/github/external_busybox
+- f9332ed4d9054aba42ecd6ffa0c5b14b17b36d81 refs/remotes/github/picasso_device
+- 41cde01191ea8b1c6a1d5c2499b97d2ca0942c87 refs/remotes/github/recovery_manifest
+- d089b2e4556e5c21577616f8cef60a4cb4e46f4d refs/remotes/github/system_core
 
-Kernel:
-https://github.com/ezterry/AcerTabKernel/commit/a6312764aa19ea7fe581b9931723c206a12b11ef
+Kernel: <br />
+https://github.com/ezterry/AcerTabKernel/commit/a6312764aa19ea7fe581b9931723c206a12b11ef <br />
 config: apr_a500_defconfig
