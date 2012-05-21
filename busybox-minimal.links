@@ -10,7 +10,6 @@
 /bin/cal
 /bin/cat
 /bin/catv
-/bin/chattr
 /bin/chgrp
 /bin/chmod
 /bin/chown
@@ -20,8 +19,6 @@
 /bin/cmp
 /bin/cp
 /bin/cpio
-/sbin/nanddump
-/sbin/nandwrite
 /bin/cut
 /bin/date
 /bin/dc
@@ -65,7 +62,6 @@
 /bin/ln
 /sbin/losetup
 /bin/ls
-/bin/lsattr
 /sbin/lsmod
 /bin/lspci
 /bin/lsusb
@@ -77,7 +73,6 @@
 /bin/mkdir
 /sbin/mke2fs
 /bin/mkfifo
-/sbin/mkfs.ext2
 /bin/mknod
 /sbin/mkswap
 /bin/mktemp
@@ -102,7 +97,6 @@
 /sbin/rdev
 /bin/readlink
 /bin/realpath
-/bin/renice
 /bin/reset
 /bin/resize
 /bin/rev
@@ -150,7 +144,6 @@
 /bin/unxz
 /bin/unzip
 /bin/uptime
-/bin/usleep
 /bin/uudecode
 /bin/uuencode
 /bin/watch
